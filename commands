@@ -1,1 +1,21 @@
 ansible-playbook -i inventory.ini Error_handling.yaml --private-key=/root/login.pem
+
+ansible-vault commands:
+positional arguments:
+  {create,decrypt,edit,view,encrypt,encrypt_string,rekey}
+    create              Create new vault encrypted file
+    decrypt             Decrypt vault encrypted file
+    edit                Edit vault encrypted file
+    view                View vault encrypted file
+    encrypt             Encrypt YAML file
+    encrypt_string      Encrypt a string
+    rekey               Re-key a vault encrypted file
+
+openssl rand -base64 2048 > vault.pass
+ansible-vault create aws_credentials.yaml
+ansible-vault create aws_credentials.yaml --vault-password-file vault.pass
+ansible-vault edit aws_credentials.yaml --vault-password-file vault.pass
+ansible-vault decrypt aws_credentials.yaml
+ansible-vault view aws_credentials.yaml --vault-password-file vault.pass
+
+
